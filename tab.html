@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tab栏效果</title>
+	<style>
+		body {
+			padding-top: 300px;
+			padding-left: 300px;
+			background-color: #000;
+		}
+			ul,li {
+				padding: 0;margin:0;
+			}
+			li {
+				list-style: none;
+
+			}
+			.content {
+				width: 400px;
+				height: 400px;
+				background-color: #fff;
+				text-align: center;
+				line-height: 400px;
+			}
+			.text {
+				height: 320px;
+				width: 400px;
+				background-color: skyblue;
+				border: 3px solid red;
+				border-top: none;
+				box-sizing: border-box;
+			}
+
+			.text_tab {
+				width: 400px;
+				height: 80px;
+				display: flex;
+			}
+			.text_tab li {
+				flex: 1;
+				font-size: 16px;
+				line-height: 80px;
+				text-align: center;
+				color: red;
+				box-sizing: border-box;
+				cursor:pointer;
+			}
+
+            .add_border {
+				border-bottom: 3px solid red;
+			}
+            .new_border {
+            	border: 3px solid red;
+            	border-bottom: none;
+            }
+	</style>
+</head>
+<body>
+	<div class="content">
+		<ul class="text_tab">
+		<li class="new_border add_border">充话费</li>
+		<li class="add_border">旅行</li>
+		<li class="add_border">车险</li>
+		<li class="add_border">游戏</li>
+		<li class="add_border">车险</li>
+		<li class="add_border">游戏</li>
+	</ul>
+	<!-- 将内容和头份分开 -->
+	<ul class="text">
+		<li>充话费内容</li>
+		<li>旅行内容</li>
+		<li>车险内容</li>
+		<li>游戏内容</li>
+		<li>车险内容</li>
+		<li>游戏内容</li>
+	</ul>
+	</div>
+
+    <script src="asset/jquery-1.9.1.min.js"></script>
+	<script>
+		window.onload=function(){
+
+
+           $(".text_tab li").on("click",function(){
+			var Index=$(this).index()
+			console.log(Index)
+			$(this).siblings().removeClass("new_border")
+			 $(this).addClass("new_border")
+               
+               var lis=$(".text li")
+
+               for (var i = 0; i <lis.length; i++) {
+                 lis[i].style.display="none"
+               }
+                  lis[Index].style.display="block"
+
+			   
+
+		 })
+
+
+		}
+	</script>
+</body>
+</html>

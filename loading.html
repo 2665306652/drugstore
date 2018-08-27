@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>loading效果</title>
+	<!-- jquer引入 -->
+	<script src="asset/jquery-1.9.1.min.js"></script>
+	<style>
+		.loading {
+			width: 92px;
+			height: 30px;
+			/* background-color: red; */
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%);	
+		}
+		.loading span {
+			display: inline-block;
+			width: 10px;
+			height: 100%;
+			background-color: yellow;
+			margin: 0 1px;
+			box-sizing: border-box;
+			animation: myloading 2s ease infinite;
+			 -webkit-animation:myloading 2s ease infinite; 
+		}
+		
+		.loading span:nth-child(2){animation-delay: 0.2s;-webkit-transition-delay:0.2s;}
+		.loading span:nth-child(3){animation-delay: 0.4s;-webkit-transition-delay:0.4s;}
+		.loading span:nth-child(4){animation-delay: 0.6s;-webkit-transition-delay:0.6s;}
+		.loading span:nth-child(5){animation-delay: 0.8s;-webkit-transition-delay:0.8s;}
+		/*动画组*/
+		@keyframes myloading{
+			0%   {background: yellow;height: 30px}
+			50%  {background: blueviolet;height: 70px;margin: -20px 1px;}
+			100% {background: yellow;height: 30px}
+		}
+		@-webkit-keyframes myloading{
+			0%   {background: yellow;height: 30px}
+			50%  {background: blueviolet;height: 70px;margin: -20px 1px;}
+			100% {background: yellow;height: 30px}
+		}
+	</style>
+</head>
+<body>
+	<div class="loading">
+		<span></span>
+		<span class="Two"></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
+    
+        <img src="https://wx4.sinaimg.cn/mw690/5eef6257gy1fukikb95t4g20a00a0kjn.gif" alt="图片">
+        <img src="https://wx3.sinaimg.cn/mw690/5eef6257gy1fukiiep5p8g204s08cx6p.gif" alt="图片">
+        <img src="https://wx4.sinaimg.cn/mw690/5eef6257gy1fujbefcqv5g206g09bb29.gif" alt="图片">
+        <img src="http://wx2.sinaimg.cn/large/006nnnEXly1fuf986a55og305u07d7wi.gif" alt="图片">
+        <img src="https://wx4.sinaimg.cn/mw690/5eef6257gy1fukikb95t4g20a00a0kjn.gif" alt="图片">
+        <img src="http://wx1.sinaimg.cn/large/938a7ac0gy1fufy09uniug20cs072u1a.gif" alt="图片">
+	<script>
+
+		// onload与ready
+		// onload所有的元素加载完成，包括js css ，外联文件
+		// ready Dom元素加载完成就执行
+		
+		$(document).ready(function(){
+            $(".loading").show()
+		})
+
+
+		window.onload=function(){
+            $(".loading").hide()
+		}
+	</script>
+</body>
+</html>

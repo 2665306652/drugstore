@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MenuTree</title>
+	<style>
+		body {
+			padding-left: 300px;
+			background-color: #000;
+		}
+		ul,li {
+			padding: 0;margin:0;
+			list-style: none;
+			box-sizing: border-box;
+		}
+		p {
+			color: #fff;
+			font-size: 22px;
+			text-align: center;
+			padding-bottom: 100px;
+			border: 1px solid #000;
+		}
+		a {
+			text-decoration:none;
+            out-line: none;
+		}
+		.content {
+			width: 630px;
+			height: 480px;
+			position: relative;
+		}
+
+		.O_text {
+			float: left;
+			width: 124px;
+			height: 100%;
+			background-color: #fff;
+		}
+		.O_text li {
+			width: 100%;
+			height: 20%;
+			border: 1px solid red;
+			text-align: center;
+			line-height: 80px;
+			color: #ccc;
+			font-size: 16px;
+		}
+
+		.T_text {
+			height: 100%;
+			top: 0;
+			left: 8%;
+			overflow: hidden;
+			display: none;
+		}
+		#remove_dis {
+             display: block;
+		}
+		.T_text li {
+			height: 100%;
+			width: 308px;
+			background-color: skyblue;
+			border: 1px solid #000;
+			text-align: center;
+			line-height: 480px;
+			font-size: 20px;
+			position: absolute;
+		}
+		.new_border {
+			background-color: pink;
+		}
+
+		.Tree_text {
+			width: 200px;
+			background-color: yellow;
+			position: absolute;
+			top: 0%;
+			right: -65%;
+			display: none;
+		}
+		.Tree_text span {
+			display: block;
+			width: 100%;
+			height: 20px;
+			text-align: center;
+			line-height: 50px;
+			height: 50px;
+			font-size: 18px;
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+	<p>取消二三级事件，点击左侧body就可以</p>
+	<div class="content">
+	<ul class="O_text">
+		<li>鞋子</li>
+		<li>篮球</li>
+		<li>学习</li>
+		<li>饮食</li>
+		<li>运动</li>
+	</ul>
+	<ul class="T_text">
+		 <li>鞋子详情</li>
+		 <li>篮球详情
+            <div class="Tree_text">
+             	<a href="#"><span>足球</span></a>
+             	<a href="#"><span>排球</span></a>
+             </div>
+		 </li>
+		 <li>学习详情</li>
+		 <li>饮食详情
+             <div class="Tree_text">
+             	<a href="#"><span>牛排</span></a>
+             	<a href="#"><span>咖啡</span></a>
+             </div>
+		 </li>
+		 <li>运动详情</li>
+	</ul>
+
+	</div>
+  <script src="asset/jquery-1.9.1.min.js"></script>
+  <script>
+	window.onload=function(){
+		// 一级tab  mouseenter事件
+		$(".O_text").mouseenter(function(){
+			$(".T_text").css("display","block")
+		})
+         // 一级tab控制二级元素  mouseover事件
+		$(".O_text li").on("mouseover",function(){
+			var Index=$(this).index()
+			console.log(Index)
+			$(this).siblings().removeClass("new_border")
+			$(this).addClass("new_border")
+
+			var lis=$(".T_text li")
+			for (var i = 0; i <lis.length; i++) {
+				lis[i].style.display="none";
+				 }
+				 lis[Index].style.display="block"
+		})
+         
+         // 二级元素事件（控制三级元素）mouseover事件
+         $(".T_text li").on("mouseover",function(){
+			$(this).parent().children(".Tree_text").css("display","none")
+			$(this).children(".Tree_text").css("display","block")
+		})
+         // 二级元素事件（控制三级元素）mouseout事件
+         $(".T_text li").on("mouseout",function(){
+			$(this).children(".Tree_text").css("display","none")
+		})
+
+        // 点击事件控制二三级元素
+        $(document).click(function(event){
+        var _con = $('.content');  // 设置目标区域
+        if(!_con.is(event.target) && _con.has(event.target).length === 0){ 
+           $('.T_text').hide();  
+           $(".O_text").children("li").removeClass("new_border")
+           $(".O_text").children("li:first").addClass("new_border")
+        }
+      })
+	}
+  </script>
+</body>
+</html>
